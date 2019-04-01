@@ -1,0 +1,11 @@
+# Beats系列 全品类
+# filebeat(日志文件)、metricbeat(指标)、packetbeat(网络数据)、winlogbeat(win事件日志）、auditbeat(审计日志)、heartbeat(运行时间监控)、
+# functionbeat(无需服务器的采集器)
+
+# install beast on container or vm or run beats as function or dev libbeat to suit yourself.
+# run on docker
+docker pull docker.elastic.co/beats/filebeat:6.5.4
+docker run \
+docker.elastic.co/beats/filebeat:6.5.4 \
+setup -E setup.kibana.host=kibana:5601 \
+-E output.elasticsearch.hosts=["elasticsearch:9200"]
