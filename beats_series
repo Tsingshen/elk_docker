@@ -1,6 +1,11 @@
 # Beats系列 全品类
 # filebeat(日志文件)、metricbeat(指标)、packetbeat(网络数据)、winlogbeat(win事件日志）、auditbeat(审计日志)、heartbeat(运行时间监控)、
 # functionbeat(无需服务器的采集器)
+# 节点最好使用包安装，这样，可以使用模块，进行系统日志自动搜索。
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.7.0-x86_64.rpm
+sudo rpm -vi filebeat-6.7.0-x86_64.rpm
+
+# https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-configuration.html
 
 # install beast on container or vm or run beats as function or dev libbeat to suit yourself.
 # run on docker
