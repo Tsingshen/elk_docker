@@ -1,0 +1,8 @@
+# docker pull
+docker pull docker.elastic.co/logstash/logstash:6.7.0
+# default pipeline and conf
+# server on port: 5044 start logstash API endpoint: 9600
+
+# example docker run -d --link ec6dbdb1e89f:elasticsearch -p 5044:5044 -p 9600:9600 docker.elastic.co/logstash/logstash:6.7.0
+docker run -d docker.elastic.co/logstash/logstash:6.7.0
+
