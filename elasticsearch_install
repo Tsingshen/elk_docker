@@ -1,0 +1,20 @@
+# 参考https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.7.0
+
+# 开发模式单节点
+# 9200作为Http协议，主要用于外部通讯
+# 9300作为Tcp协议，jar之间就是通过tcp协议通讯
+# ES集群之间是通过9300进行通讯
+
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.7.0
+
+
+# 生产环境配置
+#1, The vm.max_map_count setting should be set permanently in /etc/sysctl.conf
+$ grep vm.max_map_count /etc/sysctl.conf
+vm.max_map_count=262144
+# To apply the setting on a live system type：sysctl -w vm.max_map_count=262144
+#2, by default, Elasticsearch runs inside the container as user elasticsearch uid:gid 1000:1000,
+# if you want to persist the data bind-mount on container, you should do mkdir esdatadir and chmod chown
+# 3, nofile and nproc 65535：65535
+# and more https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-configuration-methods 
