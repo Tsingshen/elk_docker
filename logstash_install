@@ -5,4 +5,10 @@ docker pull docker.elastic.co/logstash/logstash:6.7.0
 
 # example docker run -d --link 5a02118d2b7c:elasticsearch -p 5044:5044 -p 9600:9600 docker.elastic.co/logstash/logstash:6.7.0
 docker run -d --link :elasticsearch -p 5044：5044 -p 9600:9600 docker.elastic.co/logstash/logstash:6.7.0
+docker run -d -v /root/elk/logstash.yml:/usr/share/logstash/config/logstash.yml -p 5044：5044 -p 9600:9600 docker.elastic.co/logstash/logstash:6.7.0
+
+# vim /root/elk/logstash.yml
+http.host: "0.0.0.0"
+xpack.monitoring.elasticsearch.url: http://<elasticsearch_host_ip_or_domain_name>:9200
+
 
