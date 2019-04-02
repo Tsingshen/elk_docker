@@ -22,7 +22,7 @@ vm.max_map_count=262144
 docker run -d -p 9200:9200 -p 9300:9300 -v /root/elk/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml 
 docker.elastic.co/elasticsearch/elasticsearch:6.7.0
 
-# vim elasticsearch.yml
+# vim elasticsearch.yml  ##make sure publish_address can be connectted
 discovery.zen.ping.unicast.hosts: ["123.207.16.237:9300","182.154.173.90:9300"]
 discovery.zen.minimum_master_nodes: 2
 cluster.name: "elk-cluster-scq"
@@ -30,3 +30,21 @@ network.host: 0.0.0.0
 node.name: "node-1"
 node.master: true
 node.data: true
+
+
+###
+discovery.zen.ping.unicast.hosts: ["10.30.0.2:9300", "10.30.0.8:9300"]
+discovery.zen.minimum_master_nodes: 2
+discovery.zen.ping_timeout: 30s
+discovery.zen.fd.ping_timeout: 30s
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+action.destructive_requires_name: true
+cluster.name: elk-cluster-scq
+network.host: 0.0.0.0
+node.name: node-1
+node.attr.rack: r1
+node.master: true
+node.data: true
+path.data: /tmp/elk/data
+path.logs: /tmp/elk/logs
