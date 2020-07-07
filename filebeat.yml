@@ -1,0 +1,31 @@
+filebeat.inputs:
+- type: log
+  tags: ["tx-test-h1"]
+  enabled: true
+  paths:
+    - /home/ubuntu/apps/*/log/app.log
+     
+  multiline.pattern: '^[[:space:]]+(at|\.{3})[[:space:]]+\b|^Caused by:'
+  multiline.negate: false
+  multiline.match: after
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+setup.template.settings:
+  index.number_of_shards: 1
+setup.kibana:
+output.elasticsearch:
+  hosts: ["xxxxxx:9200"]
+  username: "elastic"
+  password: "xxxxx"
+  index: "filebeat-tx-test-01-%{+yyyy.MM.dd}"
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+setup.ilm.enabled: false
+setup.template.enabled: true
+setup.template.overwrite: true
+setup.template.name: "filebeat-tx-test-01"
+setup.template.pattern: "filebeat-tx-test-01-*"
