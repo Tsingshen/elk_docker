@@ -1,3 +1,5 @@
+# sudo apt install filebeat -y &&  sudo systemctl enable filebeat && sudo systemctl start filebeat
+
 filebeat.inputs:
 - type: log
   tags: ["tx-test-h1"]
